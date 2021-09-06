@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+	<form action="/uploadvideo" method="post" enctype="multipart/form-data">
+  <input type="file" id="myFile" name="filename">
+  <input type="submit" name="Upload">
+</form>
+<!--<script>-->
+<!--  async function uploadFile() {-->
+<!--  let formData = new FormData();-->
+<!--  formData.append("file", fileupload.files[0]);-->
+<!--  await fetch('http://127.0.0.1:5000/success', {-->
+<!--    method: "POST",-->
+<!--    body: formData-->
+<!--  });-->
+<!--  }-->
+<!--  </script>-->
+<script>
+   //form Submit
+   $("form").submit(function(evt){
+      evt.preventDefault();
+      var formData = new FormData($(this)[0]);
+   $.ajax({
+       url: 'http://127.0.0.1:5000/success',
+       method: 'POST',
+       data: formData,
+       async: false,
+       cache: false,
+       contentType: false,
+       enctype: 'multipart/form-data',
+       processData: false,
+       success: function (response) {
+         alert(response);
+       }
+   });
+   return true;
+ });
+</script>
+</body>
+</html>
